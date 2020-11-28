@@ -1,7 +1,6 @@
 <h1>Peliculas App</h1>
 
-<p>Pueden ver un build ejecutandose en esta url: </p>
-<a href="https://master.d3as7vi3jejvu3.amplifyapp.com">Link</a>
+<p>Pueden ver un build ejecutandose en esta url: <a href="https://master.d3as7vi3jejvu3.amplifyapp.com">Link</a></p>
 
 Debe instalar las dependencias <code>npm install</code>
 </br>
