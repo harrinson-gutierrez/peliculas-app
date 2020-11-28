@@ -1,0 +1,24 @@
+.horizontal-scroll-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+.horizontal-scroll-wrapper > .card {
+    flex: 0 0 auto;
+    max-width: 200px;
+    margin-right: -4px;
+    padding: 5px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 200px 200px;
+}
+
+@media (min-width: 600px)  {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-auto-rows: 200px;
+    }
+}

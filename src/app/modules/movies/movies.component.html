@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title color="light" *ngIf="!isSearching">PeliculasApp</ion-title>
+    <ion-searchbar *ngIf="isSearching" showCancelButton="focus" (ionCancel)="isSearching = false" class="custom-search"
+      placeholder="Buscar peliculas" animated (ionInput)="onSearchMovies($event)"></ion-searchbar>
+
+    <ion-buttons *ngIf="!isSearching" slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="isSearching = !isSearching">
+        <ion-icon color="light" slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-container *ngIf="isSearching">
+    <ion-virtual-scroll [items]="searchMovies" approxItemHeight="40px">
+      <ion-item *virtualItem="let movie; let itemBounds = bounds;">
+        <ion-thumbnail slot="start">
+          <img [src]="movie.image">
+        </ion-thumbnail>
+        <ion-label>
+          <h1>{{movie.title}}</h1>
+          <p>{{movie.crew}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-virtual-scroll>
+  </ng-container>
+
+  <ng-container *ngIf="!isSearching">
+    <ion-item lines="none">
+      <h1><b>Peliculas más populares</b></h1>
+    </ion-item>
+    <app-scrolling-container mode="horizontal" [items]="moviesPopular">
+      <app-movie [movie]="movie" *cardItem="let movie"></app-movie>
+    </app-scrolling-container>
+
+    <ion-item lines="none">
+      <h1><b>Nuestras peliculas</b></h1>
+    </ion-item>
+
+    <app-scrolling-container mode="grid" [items]="moviesPopular">
+      <app-movie [movie]="movie" *cardItem="let movie"></app-movie>
+    </app-scrolling-container>
+  </ng-container>
+</ion-content>
