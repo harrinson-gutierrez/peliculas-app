@@ -31,7 +31,7 @@ export class MoviesComponent implements OnInit {
    * @param _moviesService MoviesServices
    * @param _menu Menu
    */
-  constructor(private _moviesService: MoviesServiceMockService,
+  constructor(private _moviesService: MoviesService,
               private _menu: MenuController) { }
 
   ngOnInit() {
