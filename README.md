@@ -1,4 +1,6 @@
-<h1>Peliculas App</h1>
+<h1>Peliculas App Ionic</h1>
+
+<p>Pueden ver un build ejecutandose en esta url: <a href="https://master.d3as7vi3jejvu3.amplifyapp.com">Link</a></p>
 
 Debe instalar las dependencias <code>npm install</code>
 </br>
