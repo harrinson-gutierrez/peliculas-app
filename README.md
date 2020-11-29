@@ -12,11 +12,14 @@ Para lanzar la aplicación <code>ionic serve</code>
 
 <h2>Resultados</h2>
 
+<p>loader de imagenes</p>
+<img src="https://peliculas-app-prueba.s3.amazonaws.com/captura-loader-populares+y+top.PNG" />
+
 <p>Peliculas mas populares</p>
-<img src="https://peliculas-app-prueba.s3.amazonaws.com/populares-captura.PNG" />
+<img src="https://peliculas-app-prueba.s3.amazonaws.com/populares+2.PNG" />
 
 <p>Busqueda de peliculas</p>
-<img src="https://peliculas-app-prueba.s3.amazonaws.com/filtro-captura.PNG" />
+<img src="https://peliculas-app-prueba.s3.amazonaws.com/carga-search-loader.PNG" />
 
 
 <h2>Consideraciones</h2>
