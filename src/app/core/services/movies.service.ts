@@ -16,6 +16,10 @@ export class MoviesService {
     return this._http.get<BaseResponse<Movie>>(`${environment.api.url}/MostPopularMovies/${environment.api.key}`);
   }
 
+  getTop250PopularMovies(): Observable<BaseResponse<Movie>> {
+    return this._http.get<BaseResponse<Movie>>(`${environment.api.url}/Top250Movies/${environment.api.key}`);
+  }
+
   getSearchMovie(filter: string): Observable<BaseResponseFilter<Movie>> {
     return this._http.get<BaseResponseFilter<Movie>>(`${environment.api.url}/SearchMovie/${environment.api.key}/${filter}`);
   }

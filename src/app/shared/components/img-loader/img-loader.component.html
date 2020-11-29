@@ -1,0 +1,5 @@
+<img class="{{imgClass}}" src="{{src}}" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="!loaded"/>
+<div style="position: relative;">
+  <ion-spinner style="position:absolute;" [ngClass]="{'center':true}" *ngIf="!loaded && hasLoader"></ion-spinner> 
+  <img class="{{imgClass}}" [ngClass]="{'center':true}" *ngIf="!loaded" src="assets/images/dummy.png">
+</div>

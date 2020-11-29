@@ -3,6 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { MoviesService } from 'src/app/core/services/movies.service';
 import { MoviesServiceMockService } from 'src/app/data/mocks/movies/MoviesServiceMock.service';
 import { Movie } from 'src/app/data/models/movie';
+import { PaginationList, PaginationUtil } from 'src/app/data/models/util/paginated';
 
 @Component({
   selector: 'app-movies',
@@ -15,6 +16,11 @@ export class MoviesComponent implements OnInit {
    * Si el componente esta en busqueda
    */
   isSearching: boolean = false;
+
+  /**
+   * Peliculas top 250
+   */
+  movies250Top: Movie[];
 
   /**
    * Peliculas populares
@@ -31,11 +37,23 @@ export class MoviesComponent implements OnInit {
    * @param _moviesService MoviesServices
    * @param _menu Menu
    */
-  constructor(private _moviesService: MoviesService,
-              private _menu: MenuController) { }
+  constructor(private _moviesService: MoviesServiceMockService,
+    private _menu: MenuController) { }
 
   ngOnInit() {
+    this.callTopMoviesMoviesPopular();
     this.callMoviesPopular();
+  }
+
+  /**
+   * Obtiene las peliculas top 250
+   */
+  callTopMoviesMoviesPopular() {
+    this._moviesService.getTop250PopularMovies().subscribe(data => {
+      this.movies250Top = data.items;
+    }, (error) => {
+      console.log(error);
+    })
   }
 
   /**
@@ -59,7 +77,18 @@ export class MoviesComponent implements OnInit {
     })
   }
 
-  openMenu(){
+  /**
+   * Abrir el menu lateral
+   */
+  openMenu() {
     this._menu.toggle();
+  }
+
+  /**
+   * rating in stars
+   * @param value 1-10 Value
+   */
+  getRating(value: number) {
+    return ((value * 100) / 10);
   }
 }

@@ -1,6 +1,10 @@
 <ion-card>
-  <ion-img [src]="movie.image"></ion-img>
-  <ion-item>
-    <ion-label>{{movie.title}}</ion-label>
+  <app-img-loader [imgClass]="'img-custom-scrolling'" [src]="movie.image"></app-img-loader>
+  <ion-item lines="none">
+    <ion-label>
+      <h3>{{movie.title}}</h3>
+      <app-rating [stars]="getRating(movie.imDbRating) + '%'"></app-rating>
+      <p>{{movie.year}}</p>
+    </ion-label>
   </ion-item>
 </ion-card>

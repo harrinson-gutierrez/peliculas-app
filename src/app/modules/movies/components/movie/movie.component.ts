@@ -16,4 +16,7 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
   }
 
+  getRating(value: number) {
+    return ((value * 100) / 10);
+  }
 }

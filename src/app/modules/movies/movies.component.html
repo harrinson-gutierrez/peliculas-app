@@ -19,24 +19,25 @@
 </ion-header>
 <ion-content>
   <ng-container *ngIf="isSearching">
-    <ion-virtual-scroll [items]="searchMovies" approxItemHeight="40px">
-      <ion-item *virtualItem="let movie; let itemBounds = bounds;">
+    <app-scrolling-container [pagination]="{page:1, size:15}" mode="vertical" [items]="searchMovies">
+      <ion-item *cardItem="let movie">
         <ion-thumbnail slot="start">
-          <img [src]="movie.image">
+          <app-img-loader [imgClass]="'img-custom-scrolling-tumb'" [hasLoader]="false" [src]="movie.image"></app-img-loader>
         </ion-thumbnail>
         <ion-label>
           <h1>{{movie.title}}</h1>
+          <app-rating [stars]="getRating(movie.imDbRating) + '%'"></app-rating>
           <p>{{movie.crew}}</p>
         </ion-label>
       </ion-item>
-    </ion-virtual-scroll>
+    </app-scrolling-container>
   </ng-container>
 
   <ng-container *ngIf="!isSearching">
     <ion-item lines="none">
       <h1><b>Peliculas más populares</b></h1>
     </ion-item>
-    <app-scrolling-container mode="horizontal" [items]="moviesPopular">
+    <app-scrolling-container mode="horizontal" [items]="movies250Top">
       <app-movie [movie]="movie" *cardItem="let movie"></app-movie>
     </app-scrolling-container>
 
@@ -44,7 +45,7 @@
       <h1><b>Nuestras peliculas</b></h1>
     </ion-item>
 
-    <app-scrolling-container mode="grid" [items]="moviesPopular">
+    <app-scrolling-container [pagination]="{page:1, size:15}" mode="grid" [items]="moviesPopular">
       <app-movie [movie]="movie" *cardItem="let movie"></app-movie>
     </app-scrolling-container>
   </ng-container>

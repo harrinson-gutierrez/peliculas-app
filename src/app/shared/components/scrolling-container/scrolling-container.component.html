@@ -2,20 +2,20 @@
   <ng-container [ngSwitch]="mode">
     <ng-container *ngSwitchCase="'horizontal'">
       <div class="horizontal-scroll-wrapper">
-        <div class="card" *ngFor="let item of items">
+        <div class="card" *ngFor="let item of getItemsPaginted.data">
           <ng-container *ngTemplateOutlet="cardItemTemplate; context: {$implicit: item}"></ng-container>
         </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'vertical'">
-      <ng-container *ngFor="let item of items">
+      <ng-container *ngFor="let item of getItemsPaginted.data">
         <ng-container *ngTemplateOutlet="cardItemTemplate; context: {$implicit: item}"></ng-container>
       </ng-container>
     </ng-container>
 
     <ng-container *ngSwitchCase="'grid'">
       <div class="grid">
-        <div class="card" *ngFor="let item of items">
+        <div class="card" *ngFor="let item of getItemsPaginted.data">
           <ng-container *ngTemplateOutlet="cardItemTemplate; context: {$implicit: item}"></ng-container>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as data from '../../../../assets/mostpopularmovies.json';
+import * as data250 from '../../../../assets/top250movies.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,12 @@ export class MoviesServiceMockService {
   getMostPopularMovies() {
     return new Observable<any>(observer => {
       observer.next((data as any).default);
+    });
+  }
+
+  getTop250PopularMovies(): Observable<any> {
+    return new Observable<any>(observer => {
+      observer.next((data250 as any).default);
     });
   }
 

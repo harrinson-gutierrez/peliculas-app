@@ -1,4 +1,5 @@
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { Pagination, PaginationList, PaginationUtil } from 'src/app/data/models/util/paginated';
 import { CardItemDirective } from './directives/card-item.directive';
 
 @Component({
@@ -6,13 +7,19 @@ import { CardItemDirective } from './directives/card-item.directive';
   templateUrl: './scrolling-container.component.html',
   styleUrls: ['./scrolling-container.component.scss']
 })
-export class ScrollingContainerComponent {
+export class ScrollingContainerComponent implements OnInit, OnChanges {
 
   /**
    * Elementos para iterar
    */
   @Input()
-  items: any[] = [];
+  items: any[];
+
+  @Input()
+  pagination: Pagination;
+
+  private itemsPaginated: PaginationList<any>;
+
 
   /**
    * Forma de visualizar los elementos
@@ -27,4 +34,22 @@ export class ScrollingContainerComponent {
   cardItemTemplate: any;
 
   constructor() { }
+
+  ngOnInit(): void {
+
+    if (!this.pagination)
+      this.pagination = { page: 1, size: 5 };
+      
+    this.itemsPaginated = PaginationUtil.Pagination<any>(this.items, this.pagination);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.pagination)
+      this.pagination = { page: 1, size: 5 };
+    this.itemsPaginated = PaginationUtil.Pagination<any>(this.items, this.pagination);
+  }
+
+  get getItemsPaginted(): PaginationList<any> {
+    return this.itemsPaginated;
+  }
 }
